@@ -16,10 +16,6 @@ def get_args():
         description='Picnic game',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('positional',
-                        metavar='str',
-                        help='A positional argument')
-
     parser.add_argument('item',
                         help='item(s) to bring',
                         metavar='str',
