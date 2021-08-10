@@ -4,7 +4,7 @@ Author : t23 <me@wsu.com>
 Date   : 8/9/2021
 Purpose:
 """
-import math
+from math import sqrt
 
 
 def take(count, iterable):
@@ -38,7 +38,7 @@ def distinct(iterable):
 
 
 def square_num(num):
-    return math.sqrt(num) % 2 == 0
+    return sqrt(num) % 2 == 0
 
 
 def run_distinct():
@@ -64,6 +64,38 @@ def run_pipeline():
         print(item)
 
 
+def capital_indexes(input):
+    # capital_letters = []
+    # for index, char in enumerate(input):
+    #     if char.isupper():
+    #         capital_letters.append(index)
+    # return capital_letters
+    return [i for i, char in enumerate(input) if char.isupper()]
+
+
+def fib():
+    prev = 0
+    next_up = 1
+    while True:
+        my_sum = prev + next_up
+        prev = next_up
+        next_up = my_sum
+        yield my_sum
+        continue
+
+
+def fibo():
+    numbers = []
+    while True:
+        if len(numbers) < 2:
+            numbers.append(1)
+        else:
+            numbers.append((sum(numbers)))
+            numbers.pop(0)
+        yield numbers[-1]
+        continue
+
+
 # --------------------------------------------------
 def main():
     """Make your noise here"""
@@ -74,8 +106,12 @@ def main():
     n = 1000000
     # n_sq = (x*x for x in range(1, n + 1))  # saves memory uses generator
     # l_sq = list(n_sq)
-    l_sq = [(x * x for x in range(1, n + 1))]
-    print(f'Sum of first {n} numbers is {sum(l_sq)}')
+    # l_sq = [(x * x for x in range(1, n + 1))]
+    # print(f'Sum of first {n} numbers is {sum(l_sq)}')
+
+    for i in range(100):
+        print(next(fib()))
+        i += 1
 
 
 # --------------------------------------------------
