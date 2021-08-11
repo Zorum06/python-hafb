@@ -13,9 +13,6 @@ class SortedSet:
     def __contains__(self, item):
         return item in self.list
 
-    def __sizeof__(self):
-        return len(self.list)
-
     def __len__(self):
         return len(self.list)
 
@@ -23,7 +20,25 @@ class SortedSet:
         return iter(self.list)
 
     def __getitem__(self, item):
-        return self.list[item]
+        result = self.list[item]
+        return SortedSet(result).list if isinstance(item, slice) else result
+
+    def __repr__(self):
+        return f'SortedSet({repr(self.list) if self.list else ""})'
+
+    def __eq__(self, rhs):
+        """If not instance return NoImplemented
+        rather than raise NoImplementedError"""
+        if not isinstance(rhs, SortedSet):
+            return NotImplemented
+        return self.list == rhs.list
+
+    def __ne__(self, rhs):
+        """If not instance return NoImplemented
+        rather than raise NoImplementedError"""
+        if not isinstance(rhs, SortedSet):
+            return NotImplemented
+        return self.list != rhs.list
 
 
 def main():
